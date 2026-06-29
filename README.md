@@ -1,2 +1,102 @@
-# LLMs-paper-insights-summary
-每月更新高质量LLMs相关论文Insights，以及不定时更新各大会议感兴趣的论文Insight集合
+# AI Paper Insights Summary
+
+> 用社区共识，而不是单一审稿链条，发现每个月最值得关注的AI论文。
+
+[![Monthly Lists](https://img.shields.io/badge/lists-monthly-blue)](top_papers/)
+[![Sources](https://img.shields.io/badge/sources-HuggingFace%20%7C%20AlphaXiv-orange)](https://huggingface.co/papers)
+
+---
+
+## 为什么做这件事
+
+顶会审稿曾经是筛选高质量论文最可靠的方式之一，但在今天的AI研究环境下，这条路径已经越来越不够用：
+
+- **论文供给爆炸**：预印本数量快速增长，单篇论文从发表到被社区充分检验的周期被大幅压缩
+- **AI 内容泛滥**：写作、实验报告乃至评审辅助都在规模化使用LLM，「看起来像高质量论文」与「真正有价值的工作」之间的区分变得更困难
+- **顶会机制承压**：审稿人负载过高、领域狭窄、利益冲突与圈子效应，使得少数gatekeeper很难稳定代表整个社区的判断
+- **影响力滞后**：很多真正驱动工程实践和开源生态的工作，并不会在第一时间被传统venue排名捕获
+
+我们需要的，不只是一个「谁被接收了」的列表，而是一个更接近 **Crowdsourcing（众包打分）** 的机制，让更大范围的研究者、工程师和实践者，用真实的阅读、投票、复现与Star行为，共同决定哪些论文值得被看见。
+
+---
+
+## 我们的做法
+
+本仓库公开的是**每月精选论文清单**，数据来自两个已经具备社区信号的平台：
+
+| 来源 | 信号 | 说明 |
+|------|------|------|
+| [Hugging Face Papers](https://huggingface.co/papers) | `upvotes` | 社区对论文的 explicitly 投票 |
+| [AlphaXiv](https://www.alphaxiv.org/) | `likes` | 社区热度与关注度 |
+
+合并逻辑，大致如下：
+
+1. 分别从HF与AlphaXiv拉取当月榜单数据
+2. 过滤低信号条目（如 upvotes / likes 低于阈值）
+3. 按**论文标题**去重，标记来源（HF / AlphaXiv / 双源）
+4. 计算综合得分：`aggregate_score = upvotes + likes + github_stars`
+5. 按综合得分排序，输出最终列表，即`top_papers/`目录中的结果文件
+
+---
+
+## 仓库内容
+
+```
+top_papers/
+├── 2026_06.csv    # 2026 年 6 月精选论文
+└── ...            # 后续月份持续更新
+```
+
+### CSV 字段说明
+
+| 字段 | 含义 |
+|------|------|
+| `title` | 论文标题 |
+| `arxiv_id` | arXiv ID，方便某些屏蔽链接的blog粘贴使用 |
+| `arxiv_link` | arXiv 链接 |
+| `HF` | 是否出现在Hugging Face榜单（1 / 0） |
+| `AlphaXiv` | 是否出现在AlphaXiv榜单（1 / 0） |
+| `upvotes` | HF社区upvotes |
+| `likes` | AlphaXiv likes |
+| `github_stars` | 关联GitHub仓库Star数 |
+| `aggregate_score` | 综合得分（upvotes + likes + github_stars） |
+| `github_url` | 代码仓库链接（如有） |
+| `hf_link` | Hugging Face Papers页面（如有） |
+| `published_at` | 发布 / 收录日期 |
+| `authors` | 作者列表 |
+
+---
+
+## 如何使用
+
+1. 打开 [`top_papers/`](top_papers/) 中对应月份的 CSV
+2. 按 `aggregate_score` 降序浏览（文件已预排序）
+
+---
+
+## 设计原则
+
+- **开放信号优先**：优先采用平台级、可复现的公开指标，而不是主观curate
+- **多源交叉验证**：单平台热门不等于绝对高质量；双源共识是更强的筛选信号
+- **面向实践**：GitHub Stars等指标用于捕捉「是否真正影响工程与复现」
+- **月度更新**：跟踪研究社区attention的时间分布，不是一次性静态榜单
+
+---
+
+## 免责声明
+
+本仓库提供的是 **基于公开社区指标的筛选结果**，不构成学术评价、投资建议或引用推荐。  
+榜单反映的是「社区关注度」，不是论文最终科学价值的唯一判据。请结合原文阅读独立判断。
+
+---
+
+## 更新节奏
+
+- **每月**发布一个新的 `top_papers/YYYY_MM.csv`
+- 历史月份文件保留，便于对比社区关注点的迁移
+
+---
+
+## License
+
+数据文件中的论文元信息归属各原始平台与作者。本仓库的清单组织方式与说明文档可自由引用，请注明来源。

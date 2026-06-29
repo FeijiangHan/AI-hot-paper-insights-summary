@@ -1,0 +1,12 @@
+
+*
+
+!.gitignore
+!README.md
+
+!top_papers/
+!top_papers/**
+
+data/
+scripts/
+
