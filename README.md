@@ -2,9 +2,6 @@
 
 > 用社区共识，而不是单一审稿链条，发现每个月最值得关注的AI论文。
 
-[![Monthly Lists](https://img.shields.io/badge/lists-monthly-blue)](top_papers/)
-[![Sources](https://img.shields.io/badge/sources-HuggingFace%20%7C%20AlphaXiv-orange)](https://huggingface.co/papers)
-
 ---
 
 ## 为什么做这件事
