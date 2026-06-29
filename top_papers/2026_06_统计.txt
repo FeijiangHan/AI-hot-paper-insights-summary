@@ -1,0 +1,38 @@
+============================================================
+  HF + AlphaXiv 合并统计报告
+  月份: 2026-06
+  生成时间: 2026-06-29 06:41:19
+============================================================
+
+【筛选与合并】
+  过滤阈值: upvotes/likes > 50
+  HF 过滤后: 92 篇
+  AlphaXiv 过滤后: 119 篇
+  去重后总计: 188 篇
+  双源收录 (upvotes>0 且 likes>0): 23 篇
+  仅 HF: 69 篇
+  仅 AlphaXiv: 96 篇
+  含 GitHub 链接: 110 篇
+  github_stars > 0: 108 篇
+
+【GitHub Stars 与社区投票相关性（Pearson r）】
+  说明: r ∈ [-1, 1]，越接近 1 表示 stars 与投票同步上升，越接近 0 表示几乎无线性关系。
+
+  ── 全量样本 ──
+  github_stars vs upvotes : 0.0954  (极弱/几乎无正相关)
+  github_stars vs likes   : 0.0760  (极弱/几乎无正相关)
+  github_stars vs upvotes+likes : 0.1300  (极弱/几乎无正相关)
+
+  ── 仅含 GitHub 链接的论文 ──
+  github_stars vs upvotes : 0.0760  (极弱/几乎无正相关)
+  github_stars vs likes   : 0.1475  (极弱/几乎无正相关)
+  github_stars vs upvotes+likes : 0.1649  (极弱/几乎无正相关)
+
+  ── 仅 github_stars > 0 的论文 ──
+  github_stars vs upvotes : 0.0725  (极弱/几乎无正相关)
+  github_stars vs likes   : 0.1484  (极弱/几乎无正相关)
+  github_stars vs upvotes+likes : 0.1628  (极弱/几乎无正相关)
+
+【简要解读】
+  在当前榜单中，GitHub Stars 与 HF/AlphaXiv 投票整体上几乎不存在明显线性相关。
+  社区「点赞/upvote」与「代码仓库 star」可能反映不同维度的关注度。

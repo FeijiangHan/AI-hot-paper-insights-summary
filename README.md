@@ -40,8 +40,9 @@
 
 ```
 top_papers/
-├── 2026_06.csv    # 2026 年 6 月精选论文
-└── ...            # 后续月份持续更新
+├── 2026_06.csv         # 2026 年 6 月精选论文
+├── 2026_06_统计.txt    # 合并统计与相关性分析
+└── ...                 # 后续月份持续更新
 ```
 
 ### CSV 字段说明
@@ -56,10 +57,11 @@ top_papers/
 | `upvotes` | Hugging Face 社区 upvotes（0 表示未进入 HF 筛选集） |
 | `likes` | AlphaXiv likes（0 表示未进入 AlphaXiv 筛选集） |
 | `github_stars` | 关联 GitHub 仓库 Star 数 |
-| `arxiv_id` | arXiv ID，方便某些屏蔽链接的场景粘贴使用 |
-| `github_url` | 代码仓库链接（如有） |
+| `github_link` | 代码仓库链接（如有） |
 | `published_at` | 发布 / 收录日期 |
 | `authors` | 作者列表 |
+
+同目录还会生成 `YYYY_MM_统计.txt`，记录合并概况及 **GitHub Stars 与 upvotes/likes 的 Pearson 相关系数**，用于观察社区投票与代码关注度是否一致。
 
 ---
 
