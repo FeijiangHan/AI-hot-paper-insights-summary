@@ -34,6 +34,8 @@
 4. 计算综合得分：`aggregate_score = upvotes + likes + github_stars`
 5. 按综合得分排序，输出最终列表，即 `top_papers/` 目录中的结果文件
 
+
+
 ### 为什么要纳入 GitHub Stars？
 
 对**2026-06**榜单做了Pearson相关分析（详见 [`2026_06_统计.txt`](top_papers/2026_06_统计.txt)）：
@@ -87,6 +89,9 @@ top_papers/
 1. 打开 [`top_papers/`](top_papers/) 中对应月份的 CSV
 2. 按 `aggregate_score` 降序浏览（文件已预排序）
 3. 同时有 `upvotes` 与 `likes` 的条目，表示被 HF 与 AlphaXiv 双源认可
+4. 把这个csv上传到LLMs，个性化分析范式转移，推荐你感兴趣的论文，总结insight等等
+
+**亲测：这样做，效果比给gpt/claude提供链接再爬取html分析更全面准确**
 
 ---
 
