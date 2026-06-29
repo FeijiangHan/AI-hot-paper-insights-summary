@@ -4,7 +4,13 @@
 
 ---
 
-## 为什么做这件事
+## TODOs
+[ ] 上传完整的爬虫scripts
+
+[ ] 把整个项目转换成agent skills模式，让Agent可以自动调用工具获得csv进行分析
+
+
+## 为什么
 
 顶会审稿曾经是筛选高质量论文最可靠的方式之一，但在今天的AI研究环境下，这条路径已经越来越不够用：
 
@@ -16,14 +22,14 @@
 
 ---
 
-## 我们的做法
+## 做法
 
 本仓库公开的是**每月精选论文清单**，数据来自两个已经具备社区信号的平台：
 
 | 信号维度 | 主要反映 | 典型行为 | 局限 |
 |----------|----------|----------|------|
-| `upvotes` [Hugging Face Papers](https://huggingface.co/papers) | 论文阅读社区的显式认可（邮件推送，各大公众号和x博主的主流宣传基础） | 浏览Daily Papers后投票 | 许多论文会优先宣传HF link打榜，存在一些黑产交易可以刷榜；需要注册HF账号，可能需要翻墙浏览导致国内viewer少于国外 |
-| `likes` [AlphaXiv](https://www.alphaxiv.org/) | 研究社区的热度与传播（和Arxiv榜单入口曝光多） | 在AlphaXiv上点赞、追踪 | 与HF有重叠；只要看arxiv就能看到Alphaxiv点赞并跳转，相比于HF更纯净 |
+| `upvotes` （[Hugging Face Papers](https://huggingface.co/papers)） | 论文阅读社区的显式认可（邮件推送，各大公众号和x博主的主流宣传基础） | 浏览Daily Papers后投票 | 许多论文会优先宣传HF link打榜，存在一些黑产交易可以刷榜；需要注册HF账号，可能需要翻墙浏览导致国内viewer少于国外 |
+| `likes` （[AlphaXiv](https://www.alphaxiv.org/)） | 研究社区的热度与传播（和Arxiv页面整合，曝光多） | 在AlphaXiv上点赞、追踪 | 与HF有重叠；只要看arxiv就能看到Alphaxiv点赞并跳转，相比于HF更纯净 |
 | `github_stars` | 工程落地与开源影响力 | clone、star、fork、集成进项目 | 无仓库的论文star为0，不能单独代表学术质量（但个人感觉价值也有限） |
 
 合并逻辑，大致如下：
@@ -33,7 +39,6 @@
 3. 按**论文标题**去重；`upvotes` / `likes` 非零即表示该来源收录
 4. 计算综合得分：`aggregate_score = upvotes + likes + github_stars`
 5. 按综合得分排序，输出最终列表，即 `top_papers/` 目录中的结果文件
-
 
 
 ### 为什么要纳入 GitHub Stars？
@@ -55,6 +60,16 @@
 
 ---
 
+## 如何使用
+
+1. 打开 [`top_papers/`](top_papers/) 中对应月份的 CSV
+2. 原始方式：肉眼搜索自己感兴趣的论文，粘贴给LLMs总结，可以参考我之前发的[论文阅读prompt/skills](https://github.com/FeijiangHan/PaperForge)
+3. 自动化方式：把这个csv上传到LLMs，（1）让LLMs分析范式转移，看这个月的社区重点是什么，什么样的research吸引了大量关注，并预测这个月需要重点关注的方向是什么，（2）输入你的CV/个人主页，让LLMs结合csv推荐你感兴趣的论文，总结insights
+
+**亲测：这样做，效果比给gpt/claude提供链接再爬取html分析更全面准确**
+
+---
+
 ## 仓库内容
 
 ```
@@ -63,6 +78,7 @@ top_papers/
 ├── 2026_06_统计.txt    # 合并统计与相关性分析
 └── ...                 # 后续月份持续更新
 ```
+
 
 ### CSV 字段说明
 
@@ -82,16 +98,6 @@ top_papers/
 
 同目录还会生成 `YYYY_MM_统计.txt`，记录合并概况及 **GitHub Stars 与 upvotes/likes 的 Pearson 相关系数**，用于观察社区投票与代码关注度是否一致。
 
----
-
-## 如何使用
-
-1. 打开 [`top_papers/`](top_papers/) 中对应月份的 CSV
-2. 按 `aggregate_score` 降序浏览（文件已预排序）
-3. 同时有 `upvotes` 与 `likes` 的条目，表示被 HF 与 AlphaXiv 双源认可
-4. 把这个csv上传到LLMs，个性化分析范式转移，推荐你感兴趣的论文，总结insight等等
-
-**亲测：这样做，效果比给gpt/claude提供链接再爬取html分析更全面准确**
 
 ---
 
