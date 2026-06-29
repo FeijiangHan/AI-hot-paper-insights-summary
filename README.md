@@ -23,7 +23,7 @@
 
 | 信号维度 | 主要反映 | 典型行为 | 局限 |
 |----------|----------|----------|------|
-| `upvotes` [Hugging Face Papers](https://huggingface.co/papers) | 论文阅读社区的显式认可（邮件推送+各大公众号主流宣传选用的榜单） | 浏览Daily Papers后投票 | 许多论文会优先宣传HF link打榜，存在一些黑产交易可以刷榜 |
+| `upvotes` [Hugging Face Papers](https://huggingface.co/papers) | 论文阅读社区的显式认可（邮件推送，各大公众号和x博主的主流宣传基础） | 浏览Daily Papers后投票 | 许多论文会优先宣传HF link打榜，存在一些黑产交易可以刷榜；需要注册HF账号，可能需要翻墙浏览导致国内viewer少于国外 |
 | `likes` [AlphaXiv](https://www.alphaxiv.org/) | 研究社区的热度与传播（和Arxiv榜单入口曝光多） | 在AlphaXiv上点赞、追踪 | 与HF有重叠；只要看arxiv就能看到Alphaxiv点赞并跳转，相比于HF更纯净 |
 | `github_stars` | 工程落地与开源影响力 | clone、star、fork、集成进项目 | 无仓库的论文star为0，不能单独代表学术质量（但个人感觉价值也有限） |
 
