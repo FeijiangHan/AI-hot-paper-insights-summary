@@ -30,9 +30,9 @@
 
 1. 分别从HF与AlphaXiv拉取当月榜单数据
 2. 过滤低信号条目（如 upvotes / likes 低于阈值）
-3. 按**论文标题**去重，标记来源（HF / AlphaXiv / 双源）
+3. 按**论文标题**去重；`upvotes` / `likes` 非零即表示该来源收录
 4. 计算综合得分：`aggregate_score = upvotes + likes + github_stars`
-5. 按综合得分排序，输出最终列表，即`top_papers/`目录中的结果文件
+5. 按综合得分排序，输出最终列表，即 `top_papers/` 目录中的结果文件
 
 ---
 
@@ -46,19 +46,18 @@ top_papers/
 
 ### CSV 字段说明
 
+列顺序按阅读优先级排列：标题与链接 → 综合得分 → 分项信号 → 补充信息。
+
 | 字段 | 含义 |
 |------|------|
 | `title` | 论文标题 |
-| `arxiv_id` | arXiv ID，方便某些屏蔽链接的blog粘贴使用 |
 | `arxiv_link` | arXiv 链接 |
-| `HF` | 是否出现在Hugging Face榜单（1 / 0） |
-| `AlphaXiv` | 是否出现在AlphaXiv榜单（1 / 0） |
-| `upvotes` | HF社区upvotes |
-| `likes` | AlphaXiv likes |
-| `github_stars` | 关联GitHub仓库Star数 |
 | `aggregate_score` | 综合得分（upvotes + likes + github_stars） |
+| `upvotes` | Hugging Face 社区 upvotes（0 表示未进入 HF 筛选集） |
+| `likes` | AlphaXiv likes（0 表示未进入 AlphaXiv 筛选集） |
+| `github_stars` | 关联 GitHub 仓库 Star 数 |
+| `arxiv_id` | arXiv ID，方便某些屏蔽链接的场景粘贴使用 |
 | `github_url` | 代码仓库链接（如有） |
-| `hf_link` | Hugging Face Papers页面（如有） |
 | `published_at` | 发布 / 收录日期 |
 | `authors` | 作者列表 |
 
@@ -68,6 +67,7 @@ top_papers/
 
 1. 打开 [`top_papers/`](top_papers/) 中对应月份的 CSV
 2. 按 `aggregate_score` 降序浏览（文件已预排序）
+3. 同时有 `upvotes` 与 `likes` 的条目，表示被 HF 与 AlphaXiv 双源认可
 
 ---
 
