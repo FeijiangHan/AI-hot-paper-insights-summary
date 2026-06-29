@@ -21,10 +21,11 @@
 
 本仓库公开的是**每月精选论文清单**，数据来自两个已经具备社区信号的平台：
 
-| 来源 | 信号 | 说明 |
-|------|------|------|
-| [Hugging Face Papers](https://huggingface.co/papers) | `upvotes` | 社区对论文的 explicitly 投票 |
-| [AlphaXiv](https://www.alphaxiv.org/) | `likes` | 社区热度与关注度 |
+| 信号维度 | 主要反映 | 典型行为 | 局限 |
+|----------|----------|----------|------|
+| `upvotes` [Hugging Face Papers](https://huggingface.co/papers) | 论文阅读社区的显式认可（邮件推送+各大公众号主流宣传选用的榜单） | 浏览Daily Papers后投票 | 许多论文会优先宣传HF link打榜，存在一些黑产交易可以刷榜 |
+| `likes` [AlphaXiv](https://www.alphaxiv.org/) | 研究社区的热度与传播（和Arxiv榜单入口曝光多） | 在AlphaXiv上点赞、追踪 | 与HF有重叠；只要看arxiv就能看到Alphaxiv点赞并跳转，相比于HF更纯净 |
+| `github_stars` | 工程落地与开源影响力 | clone、star、fork、集成进项目 | 无仓库的论文star为0，不能单独代表学术质量（但个人感觉价值也有限） |
 
 合并逻辑，大致如下：
 
@@ -35,12 +36,6 @@
 5. 按综合得分排序，输出最终列表，即 `top_papers/` 目录中的结果文件
 
 ### 为什么要纳入 GitHub Stars？
-
-| 信号维度 | 主要反映 | 典型行为 | 局限 |
-|----------|----------|----------|------|
-| `upvotes`（HF） | 论文阅读社区的显式认可（邮件推送+各大公众号主流宣传选用的榜单） | 浏览Daily Papers后投票 | 许多论文会优先宣传HF link打榜，存在一些黑产交易可以刷榜 |
-| `likes`（AlphaXiv） | 研究社区的热度与传播（和Arxiv榜单入口曝光多） | 在AlphaXiv上点赞、追踪 | 与HF有重叠；只要看arxiv就能看到Alphaxiv点赞并跳转，相比于HF更纯净 |
-| `github_stars` | 工程落地与开源影响力 | clone、star、fork、集成进项目 | 无仓库的论文star为0，不能单独代表学术质量（但个人感觉价值也有限） |
 
 对**2026-06**榜单做了Pearson相关分析（详见 [`2026_06_统计.txt`](top_papers/2026_06_统计.txt)）：
 
